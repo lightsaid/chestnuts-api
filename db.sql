@@ -1,7 +1,9 @@
 /**
    * 执行命令建库
    * sqlite3 db_chestnuts.db
-   * 执行脚本生产表
+   * 执行脚本生成表
+   * .read db.sql 
+   * 或者
    * sqlite3 db_chestnuts.db < db.sql
    *
 */
