@@ -7,7 +7,9 @@ const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const jwtKoa = require("koa-jwt")
 const koaBody = require("koa-body")
+const static = require('koa-static');
 const Config = require("./config")
+const path = require("path")
 
 // const index = require('./routes/index')
 const users = require('./routes/users')
@@ -33,24 +35,35 @@ app.use((ctx, next) => {
 app.use(jwtKoa({ secret: Config.PrivateKey }).unless({
   path: [
     /^\/api\/user\/login/,
-    /^\/api\/user\/register/
+    /^\/api\/user\/register/,
+    /^\/api\/user\/index/,
+    /^\/api\/user\/upload/,
+    /^\/static\//,
   ]
 }));
 
-// app.use(koaBody({
-//   multipart: true,
-//   strict: false,
-//   formidable:{
-//     // uploadDir: path.json()
-//   }
+// koa-body 配置参考 http://www.ptbird.cn/koa-body.html
+app.use(koaBody({
+  multipart: true, // 支持文件上传
+  jsonLimit: 2 * 1024 * 1024, // 设置 JSON 数据体的大小限制 2M
+  formLimit: 2 * 1024 * 1024, // 设置 form 表单请求体大小 2M
+  formidable: {
+    maxFieldsSize: 4 * 1024 * 1024, // 最大文件为4兆
+    multipart: true, // 是否支持 multipart-formdate 的表单
+    keepExtensions: true, // 保留源文件后缀
+    uploadDir: path.join(__dirname,'public/upload')
+  }
+}))
+
+app.use(static(path.join(__dirname)));
+
+// app.use(bodyparser({
+//   enableTypes: ['json', 'form', 'text']
 // }))
 
-app.use(bodyparser({
-  enableTypes: ['json', 'form', 'text']
-}))
 app.use(json())
 app.use(logger())
-app.use(require('koa-static')(__dirname + '/public'))
+app.use(static(__dirname + '/public'))
 
 app.use(views(__dirname + '/views', {
   extension: 'pug'
