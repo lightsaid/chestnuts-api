@@ -28,7 +28,7 @@ router.post("/update", function(ctx, next){
     ctx.body = UserDao.ResponseTpl(Config.BadRequest, {}, '用户名和头像不能为空')
     return
   }
-  ctx.body = UserDao.Update(username, avatar)
+  ctx.body = UserDao.Update(ctx.headers.authorization, username, avatar)
 })
 
 module.exports = router

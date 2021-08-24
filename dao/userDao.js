@@ -34,19 +34,24 @@ class UserDao extends Config {
         return UserDao.Response(UserDao.Unknown, {}, '用户名或密码不对')
     }
 
-    Update(username, avatar){
+    Update(token, username, avatar){
         // 解析token获取userId
         // 获取的 Authorization 格式为：Bearer <token>
-        let userInfo = Config.ParseJWT(ctx.headers.authorization)
+        let userInfo = Config.ParseJWT(token)
         if(!(userInfo && userInfo.id)){
             return Config.Response(Config.Unauthorized, {}, "身份过期，请重新登录")
         }
         let stmt = this.db.prepare("UPDATE tb_user set username=?, avatar=? where id = ?")
         let result;
         try{
+            console.log("data=>>", userInfo)
             result = stmt.run(username, avatar, userInfo.id);
+            if(result && result.changes === 1){
+                return Config.Response(Config.OK, {}, '修改成功')
+            }
+            return Config.Response(Config.Unknown, {}, '用户不存在')
         }catch(err){
-            console.log(err)
+            return Config.Response(Config.Unknown, {}, '修改失败', err.toString())
         }
     }
 }
