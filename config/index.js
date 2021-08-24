@@ -6,13 +6,18 @@ class Config {
     constructor(){
       
     }
+
+    ResponseTpl(code, data, msg){
+        return Config.Response(code, data, msg)
+    }
     
     // 响应模板
-    static Response(code, data, msg){
+    static Response(code, data, msg, errInfo = null){
         return {
             code: code,
-            data: data,
-            msg: msg
+            data: data, // 业务数据
+            msg: msg, // 给前端显示
+            errInfo: errInfo // 具体错误信息
         }
     }
 
@@ -33,5 +38,9 @@ Config.Unauthorized = 401
 Config.Unknown = 110 // 警报，未知异常
 
 Config.PrivateKey = "xqqlovexzz@1314520"
+Config.Port = process.env.PORT || '9999'
+Config.UrlResource = `http://localhost:${Config.Port}/static/upload`
+Config.DefaultUrlResource = `http://localhost:${Config.Port}/static/default`
+
 
 module.exports = Config
