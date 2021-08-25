@@ -5,7 +5,9 @@ const Database = require('better-sqlite3');
 const db = new Database('./db_chestnuts.db', { verbose: console.log });
 
 const userDao = require('./userDao')
+const CategoryDao = require("./categoryDao")
 
 module.exports = {
-    UserDao: new userDao(db)
+    UserDao: new userDao(db),
+    CategoryDao: new CategoryDao(db)
 }

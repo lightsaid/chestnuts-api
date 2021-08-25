@@ -15,23 +15,23 @@ class UserDao extends Config {
         }catch(err){
             let errStr = err.toString()
             if(errStr.includes("UNIQUE")){
-                return UserDao.Response(UserDao.Unknown, {}, "用户名已经存在")
+                return Config.Response(Config.Unknown, {}, "用户名已经存在")
             }
-            return UserDao.Response(UserDao.Unknown, {}, errStr)
+            return Config.Response(Config.Unknown, {}, errStr)
         }
         if(result.changes === 1){
-            return UserDao.Response(UserDao.OK, {}, "注册成功")
+            return Config.Response(Config.OK, {}, "注册成功")
         }
-        return UserDao.Response(UserDao.Unknown, {}, "注册失败")
+        return Config.Response(Config.Unknown, {}, "注册失败")
     }
 
     Login(username, password){
         const row = this.db.prepare('select id, username, avatar from tb_user where username =? and password =?').get(username, password);
         if(row && row.id){
-            let token = UserDao.GenerateJWT(row)
-            return UserDao.Response(UserDao.OK, {userinfo: row, token: token}, '登录成功')
+            let token = Config.GenerateJWT(row)
+            return Config.Response(Config.OK, {userinfo: row, token: token}, '登录成功')
         }
-        return UserDao.Response(UserDao.Unknown, {}, '用户名或密码不对')
+        return Config.Response(Config.Unknown, {}, '用户名或密码不对')
     }
 
     Update(token, username, avatar){

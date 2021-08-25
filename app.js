@@ -11,7 +11,7 @@ const path = require("path")
 
 const users = require('./routes/users')
 const fileUp = require('./routes/fileup')
-
+const category = require('./routes/category')
 // error handler
 onerror(app)
 
@@ -69,6 +69,7 @@ app.use(async (ctx, next) => {
 // routes
 app.use(users.routes(), users.allowedMethods())
 app.use(fileUp.routes(), fileUp.allowedMethods())
+app.use(category.routes(), category.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {
