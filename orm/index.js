@@ -114,9 +114,9 @@ class CRUD extends Message{
      * @param {*} whereParam [更新条件, {id: 1}]
      * @returns 
      */
-    OrmUpdated(setParam, whereParam) {
+    OrmUpdated(setParam, whereParam, termStr) {
         let ssuffix = this.mapKV(Object.entries(setParam), ' , ');
-        let wsuffix = this.mapKV(Object.entries(whereParam),'');
+        let wsuffix = this.mapKV(Object.entries(whereParam),'', termStr);
         // console.log("sql=>>", `UPDATE tb_category set ${ssuffix} where ${wsuffix}`)
         let stmt = this.db.prepare(`UPDATE tb_category set ${ssuffix} where ${wsuffix}`)
         let result;
@@ -140,8 +140,8 @@ class CRUD extends Message{
      * @param {*} model [删除条件，{id: 1}]
      * @returns 
      */
-    OrmDelete(model){
-        let suffix = this.mapKV(Object.entries(model), " AND ")
+    OrmDelete(model, termStr){
+        let suffix = this.mapKV(Object.entries(model), " AND ", termStr)
         let stmt = this.db.prepare(`DELETE FROM ${this.table} where ${suffix}`);
         let result;
         try{
