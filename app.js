@@ -56,7 +56,7 @@ app.use(static(path.join(__dirname)));
 
 app.use(json())
 app.use(logger())
-app.use(static(__dirname + '/public'))
+// app.use(static(__dirname + '/public'))
 
 // logger
 app.use(async (ctx, next) => {

@@ -44,7 +44,6 @@ class UserDao extends Config {
         let stmt = this.db.prepare("UPDATE tb_user set username=?, avatar=? where id = ?")
         let result;
         try{
-            console.log("data=>>", userInfo)
             result = stmt.run(username, avatar, userInfo.id);
             if(result && result.changes === 1){
                 return Config.Response(Config.OK, {}, '修改成功')

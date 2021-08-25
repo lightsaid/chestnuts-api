@@ -9,5 +9,5 @@ const CategoryDao = require("./categoryDao")
 
 module.exports = {
     UserDao: new userDao(db),
-    CategoryDao: new CategoryDao(db)
+    CategoryDao: new CategoryDao(db,  table='tb_category', '分类名字已经存在')
 }

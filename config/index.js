@@ -42,5 +42,7 @@ Config.Port = process.env.PORT || '9999'
 Config.UrlResource = `http://localhost:${Config.Port}/static/upload`
 Config.DefaultUrlResource = `http://localhost:${Config.Port}/static/default`
 
+Config.pageSize = 10
+Config.pageIndex = 0
 
 module.exports = Config
