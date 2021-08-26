@@ -26,7 +26,7 @@ class Config {
         return jwt.sign(userInfo, Config.PrivateKey, { expiresIn: '4h' })
     }
 
-    // 解析 token
+    // 解析 token 获取 userinfo
     static ParseJWT(token){
         return jwt.verify(token.split(' ')[1], Config.PrivateKey)
     }

@@ -16,6 +16,9 @@ const option = require("./routes/option")
 const optionValue = require("./routes/optionValue")
 const product = require("./routes/product")
 const sku = require("./routes/sku")
+const shoppingCart = require("./routes/shoppingCart")
+const order = require("./routes/order")
+
 
 
 // error handler
@@ -80,6 +83,9 @@ app.use(option.routes(), option.allowedMethods())
 app.use(optionValue.routes(), optionValue.allowedMethods())
 app.use(product.routes(), product.allowedMethods())
 app.use(sku.routes(), sku.allowedMethods())
+app.use(shoppingCart.routes(), shoppingCart.allowedMethods())
+app.use(order.routes(), order.allowedMethods())
+
 
 // error-handling
 app.on('error', (err, ctx) => {

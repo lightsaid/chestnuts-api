@@ -10,7 +10,8 @@ const OptionDao = require("./optionDao")
 const OptionValueDao = require("./optionValueDao")
 const ProductDao = require("./productDao")
 const SKUDao = require('./skuDao')
-
+const ShoppingCartDao = require("./shoppingCartDao")
+const OrderDao = require("./OrderDao")
 
 module.exports = {
     UserDao: new UserDao(db),
@@ -18,5 +19,11 @@ module.exports = {
     OptionDao: new OptionDao(db, table="tb_option"),
     OptionValueDao: new OptionValueDao(db, table="tb_option_value"),
     ProductDao: new ProductDao(db, table="tb_product"),
-    SKUDao: new SKUDao(db, table="tb_sku")
+    SKUDao: new SKUDao(db, table="tb_sku"),
+    ShoppingCartDao: new ShoppingCartDao(db, table="tb_shoppingCart"),
+    OrderDao: new OrderDao(db, table="tb_order"),
+    OrderItemDao: new OrderItemDao()
 }
+
+
+
