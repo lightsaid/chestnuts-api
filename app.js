@@ -12,6 +12,12 @@ const path = require("path")
 const users = require('./routes/users')
 const fileUp = require('./routes/fileup')
 const category = require('./routes/category')
+const option = require("./routes/option")
+const optionValue = require("./routes/optionValue")
+const product = require("./routes/product")
+const sku = require("./routes/sku")
+
+
 // error handler
 onerror(app)
 
@@ -70,6 +76,10 @@ app.use(async (ctx, next) => {
 app.use(users.routes(), users.allowedMethods())
 app.use(fileUp.routes(), fileUp.allowedMethods())
 app.use(category.routes(), category.allowedMethods())
+app.use(option.routes(), option.allowedMethods())
+app.use(optionValue.routes(), optionValue.allowedMethods())
+app.use(product.routes(), product.allowedMethods())
+app.use(sku.routes(), sku.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {

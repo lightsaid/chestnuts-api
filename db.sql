@@ -52,7 +52,8 @@ CREATE TABLE tb_product(
    imgNormal VARCHAR(255) NOT NULL,
    imgRecommend VARCHAR(255) NULL,
    isRecommend CHAR(0) DEFAULT 'N' NOT NULL,
-   onSale CHAR(0) DEFAULT 'Y' -- Y: 上架，N：下架
+   onSale CHAR(0) DEFAULT 'Y', -- Y: 上架，N：下架
+   FOREIGN KEY(categoryId) REFERENCES tb_category(id)
 );
 
 -- 6. sku表 
@@ -96,12 +97,4 @@ CREATE TABLE tb_order_item(
    quantity INT NOT NULL,
    FOREIGN KEY(orderId) REFERENCES tb_order(id)
 );
-
-
-
-
-
-
-
-
 

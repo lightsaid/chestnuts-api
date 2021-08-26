@@ -63,6 +63,7 @@ class CRUD extends Message{
             values.push(kvArr[1])
             marks.push('?')
         })
+        console.log("sql=>", `INSERT INTO ${this.table}(${fields.toString()}) VALUES (${marks.toString()})`, values) 
         let stmt = this.db.prepare(`INSERT INTO ${this.table}(${fields.toString()}) VALUES (${marks.toString()})`);
         let result;
         try{
@@ -100,7 +101,7 @@ class CRUD extends Message{
         suffix += ` limit ${page.pageSize} offset ${page.pageIndex} `
 
         try{
-            console.log("sql=>", `${prefix} ${suffix}`) 
+            // console.log("sql=>", `${prefix} ${suffix}`) 
             const list = this.db.prepare(`${prefix} ${suffix}`).all();
             return Config.Response(Config.OK, {list}, this.selectTip.success)
         }catch(err){
@@ -117,8 +118,8 @@ class CRUD extends Message{
     OrmUpdated(setParam, whereParam, termStr) {
         let ssuffix = this.mapKV(Object.entries(setParam), ' , ');
         let wsuffix = this.mapKV(Object.entries(whereParam),'', termStr);
-        // console.log("sql=>>", `UPDATE tb_category set ${ssuffix} where ${wsuffix}`)
-        let stmt = this.db.prepare(`UPDATE tb_category set ${ssuffix} where ${wsuffix}`)
+        console.log("sql=>>", `UPDATE tb_category set ${ssuffix} where ${wsuffix}`)
+        let stmt = this.db.prepare(`UPDATE ${this.table} set ${ssuffix} where ${wsuffix}`)
         let result;
         try{
             result = stmt.run();
