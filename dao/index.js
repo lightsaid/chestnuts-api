@@ -12,6 +12,7 @@ const ProductDao = require("./productDao")
 const SKUDao = require('./skuDao')
 const ShoppingCartDao = require("./shoppingCartDao")
 const OrderDao = require("./OrderDao")
+const OrderItemDao = require("./OrderItemDao")
 
 module.exports = {
     UserDao: new UserDao(db),

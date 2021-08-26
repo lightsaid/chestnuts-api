@@ -7,7 +7,7 @@ router.prefix("/api/order")
 router.post("/insert", (ctx, next)=>{
     // ctx.request.body = {
     //     address: 'xxx',
-    //     items: [skuid]
+    //     items: [{skuId: 2, quantity:1}]
     // }
     /**
      *  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
@@ -48,15 +48,17 @@ router.post("/insert", (ctx, next)=>{
     items.forEach((item, index)=>{
         let temp = new Array(2)
         temp[0] = 'id'
-        temp[1] = item
+        temp[1] = item.skuId
         suffixArr.push(temp)
     })
     let skuField = ["id","productId","sku","imgNormal","stock","salePrice"];
 
     let suffix = OrderDao.mapKV(suffixArr, 'OR', '=')
-    const list = this.db.prepare(`SELECT ${skuField.toString()} where ${suffix}`).all();
-    
-    OrderDao.Insert({ userId: userinfo.id, address, status:'1'  })
+    console.log('sql=>>>', `SELECT ${skuField.toString()} where ${suffix}`)
+    // TODO:
+    const list = OrderDao.db.prepare(`SELECT ${skuField.toString()} from tb_sku where ${suffix}`).all();
+    ctx.body = Config.Response(Config.BadRequest, {list}, "测试")
+    // OrderDao.Insert({ userId: userinfo.id, address, status:'1'  })
 })
 
 router.post("/select", (ctx, next)=>{
