@@ -1,7 +1,7 @@
 
 const CRUD = require("../orm")
 
-class OptionDao extends CRUD{
+class SKUDao extends CRUD{
     constructor(db, table, unique, success, fail){
         super(db, table, unique, success, fail)
         this.db = db
@@ -24,4 +24,4 @@ class OptionDao extends CRUD{
     }
 }
 
-module.exports = OptionDao
+module.exports = SKUDao

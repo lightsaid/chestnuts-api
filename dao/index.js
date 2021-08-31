@@ -23,7 +23,7 @@ module.exports = {
     SKUDao: new SKUDao(db, table="tb_sku"),
     ShoppingCartDao: new ShoppingCartDao(db, table="tb_shoppingCart"),
     OrderDao: new OrderDao(db, table="tb_order"),
-    OrderItemDao: new OrderItemDao()
+    OrderItemDao: new OrderItemDao(db, table="tb_order_item")
 }
 
 
