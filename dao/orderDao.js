@@ -133,9 +133,9 @@ class OrderDao extends CRUD {
 		delete whereParam.page
 		let orderList;
 		if(JSON.stringify(whereParam) === "{}"){
-			this.OrmSelect(fields, {1:1}, termStr=' = ',)
+			this.OrmSelect(fields, {1:1}, ' = ', page)
 		}
-    return this.OrmSelect(fields, whereParam, termStr=' = ',)
+    return this.OrmSelect(fields, whereParam, ' = ', page)
   }
 
   Update(setParam, whereParam) {

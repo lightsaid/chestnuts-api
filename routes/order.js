@@ -28,7 +28,7 @@ router.post("/insert", (ctx, next) => {
 
 router.post("/select", (ctx, next) => {
   const { id, status, page={pageSize: 10, pageIndex: 0} } = ctx.request.body
-  let userInfo = Config.ParseJWT(token)
+  let userInfo = Config.ParseJWT(ctx.headers.authorization)
   if (!userInfo.id) {
     return Config.Response(Config.Unauthorized, {}, "身份过期，请重新登录")
   }
