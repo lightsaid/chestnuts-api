@@ -7,8 +7,8 @@ class Config {
       
     }
 
-    ResponseTpl(code, data, msg){
-        return Config.Response(code, data, msg)
+    ResponseTpl(code, data, msg, errInfo = null){
+        return Config.Response(code, data, msg, errInfo)
     }
     
     // 响应模板

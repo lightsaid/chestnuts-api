@@ -63,7 +63,7 @@ class CRUD extends Message{
             values.push(kvArr[1])
             marks.push('?')
         })
-        console.log("sql=>", `INSERT INTO ${this.table}(${fields.toString()}) VALUES (${marks.toString()})`, values) 
+        // console.log("sql=>", `INSERT INTO ${this.table}(${fields.toString()}) VALUES (${marks.toString()})`, values) 
         let stmt = this.db.prepare(`INSERT INTO ${this.table}(${fields.toString()}) VALUES (${marks.toString()})`);
         let result;
         try{
