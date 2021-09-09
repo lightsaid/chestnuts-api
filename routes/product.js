@@ -4,6 +4,12 @@ const { ProductDao } = require("../dao")
 
 router.prefix("/api/product")
 
+
+router.post("/all", (ctx, next)=>{
+    
+})
+
+
 router.post("/insert", (ctx, next)=>{
     // const { name, categoryId, subTitle, showPrice, imgNormal, imgRecommend, isRecommend, onSale } = ctx.request.body
     const body = ctx.request.body

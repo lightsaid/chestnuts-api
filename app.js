@@ -9,6 +9,8 @@ const static = require('koa-static');
 const Config = require("./config")
 const path = require("path")
 
+const cors = require('@koa/cors');
+
 const users = require('./routes/users')
 const fileUp = require('./routes/fileup')
 const category = require('./routes/category')
@@ -23,6 +25,8 @@ const order = require("./routes/order")
 
 // error handler
 onerror(app)
+
+app.use(cors());
 
 // middlewares
 // 必须放在不需要认证访问接口之前 
@@ -47,6 +51,8 @@ app.use(jwtKoa({ secret: Config.PrivateKey }).unless({
     /^\/static\//,
   ]
 }));
+
+
 
 // koa-body 配置参考 http://www.ptbird.cn/koa-body.html
 app.use(koaBody({

@@ -176,4 +176,4 @@ insert into tb_option_value(`optionId`, `value`) values(8, "43");
 
 ---- 添加商品
 insert into tb_product(categoryId, `name`, subTitle, showPrice, imgNormal) values(2, "豆猫卫衣", "懂你温度，不失风度", 198.0, "http://localhost:9999/static/upload/p2052847.jpg");
-insert into tb_sku(productId, sku, imgNormal, stock, salePrice) values(1, "[{\"label\":\"颜色\",\"value\":\"香叶红\"},{\"label\":\"尺寸\",\"value\":\"L\"}]","http://localhost:9999/static/upload/p2052838.jpg", 198.0, 1000);
+insert into tb_sku(productId, sku, imgNormal, stock, salePrice) values(1, '[{"label":"颜色","value":"香叶红"},{"label":"尺寸","value":"L"}]',"http://localhost:9999/static/upload/p2052838.jpg", 198.0, 1000);
