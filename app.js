@@ -21,8 +21,6 @@ const sku = require("./routes/sku")
 const shoppingCart = require("./routes/shoppingCart")
 const order = require("./routes/order")
 
-
-
 // error handler
 onerror(app)
 
